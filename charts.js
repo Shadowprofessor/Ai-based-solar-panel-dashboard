@@ -12,6 +12,8 @@ let gaugeChart;
 let solarData = {
     labels: [],
     voltage: [],
+    voltage2: [],
+    battery: [],
     temp: [],
     humidity: []
 };
@@ -69,6 +71,8 @@ async function fetchThingSpeakData() {
 function processFeeds(feeds) {
     solarData.labels = [];
     solarData.voltage = [];
+    solarData.voltage2 = [];
+    solarData.battery = [];
     solarData.temp = [];
     solarData.humidity = [];
 
@@ -78,6 +82,8 @@ function processFeeds(feeds) {
         solarData.temp.push(parseFloat(feed.field1) || 0);
         solarData.humidity.push(parseFloat(feed.field2) || 0);
         solarData.voltage.push(parseFloat(feed.field3) || 0);
+        solarData.voltage2.push(parseFloat(feed.field4) || 0);
+        solarData.battery.push(parseFloat(feed.field5) || 0);
     });
 }
 
@@ -86,17 +92,30 @@ function updateDashboard() {
     if (lastIdx < 0) return;
 
     const currentV = solarData.voltage[lastIdx];
+    const currentV2 = solarData.voltage2[lastIdx];
+    const currentBat = solarData.battery[lastIdx];
     const currentT = solarData.temp[lastIdx];
     const currentH = solarData.humidity[lastIdx];
 
+    // Panel 1 Voltage
     const vVal = document.getElementById('voltage-val');
+    if (vVal) vVal.innerHTML = `${currentV.toFixed(2)} <span class="card-unit">V</span>`;
+
+    // Panel 2 Voltage
+    const v2Val = document.getElementById('voltage2-val');
+    if (v2Val) v2Val.innerHTML = `${currentV2.toFixed(2)} <span class="card-unit">V</span>`;
+
+    // Battery Voltage
+    const batVal = document.getElementById('battery-val');
+    if (batVal) batVal.innerHTML = `${currentBat.toFixed(2)} <span class="card-unit">V</span>`;
+
+    // Temp & Humidity
     const tVal = document.getElementById('temp-val');
     const hVal = document.getElementById('humidity-val');
-
-    if (vVal) vVal.innerHTML = `${currentV.toFixed(2)} <span class="card-unit">V</span>`;
     if (tVal) tVal.innerHTML = `${currentT.toFixed(1)} <span class="card-unit">°C</span>`;
     if (hVal) hVal.innerHTML = `${currentH.toFixed(0)} <span class="card-unit">%</span>`;
 
+    // Panel 1 trend
     const prevV = solarData.voltage[Math.max(0, lastIdx - 1)];
     const trend = ((currentV - prevV) / (prevV || 1) * 100).toFixed(1);
     const vTrendEl = document.getElementById('v-trend');
@@ -105,6 +124,27 @@ function updateDashboard() {
             ? `<i class="fas fa-caret-up"></i> +${trend}% vs last sync`
             : `<i class="fas fa-caret-down"></i> ${trend}% vs last sync`;
         vTrendEl.className = trend >= 0 ? 'status-indicator status-up' : 'status-indicator status-down';
+    }
+
+    // Panel 2 trend
+    const prevV2 = solarData.voltage2[Math.max(0, lastIdx - 1)];
+    const trend2 = ((currentV2 - prevV2) / (prevV2 || 1) * 100).toFixed(1);
+    const v2TrendEl = document.getElementById('v2-trend');
+    if (v2TrendEl) {
+        v2TrendEl.innerHTML = trend2 >= 0
+            ? `<i class="fas fa-caret-up"></i> +${trend2}% vs last sync`
+            : `<i class="fas fa-caret-down"></i> ${trend2}% vs last sync`;
+        v2TrendEl.className = trend2 >= 0 ? 'status-indicator status-up' : 'status-indicator status-down';
+    }
+
+    // Battery trend
+    const prevBat = solarData.battery[Math.max(0, lastIdx - 1)];
+    const batTrend = ((currentBat - prevBat) / (prevBat || 1) * 100).toFixed(1);
+    const batTrendEl = document.getElementById('bat-trend');
+    if (batTrendEl) {
+        const batStatus = currentBat > 13.5 ? 'Charging' : currentBat > 12.0 ? 'Nominal' : 'Low';
+        batTrendEl.innerHTML = `<i class="fas fa-${currentBat > 12 ? 'battery-three-quarters' : 'battery-quarter'}"></i> ${batStatus} · ${batTrend >= 0 ? '+' : ''}${batTrend}%`;
+        batTrendEl.className = currentBat > 12 ? 'status-indicator status-up' : 'status-indicator status-down';
     }
 
     const intensity = Math.min(1000, (currentV / 18) * 1000);

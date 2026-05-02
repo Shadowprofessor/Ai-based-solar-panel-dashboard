@@ -74,11 +74,12 @@
         </header>
 
         <!-- KPI Grid -->
-        <section class="dashboard-grid">
-            <div class="card" onclick="location.href='analysis.html?type=voltage'" style="cursor: pointer;">
+        <section class="dashboard-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <!-- Panel 1 Voltage -->
+            <div class="card" onclick="location.href='ai_trends.html'" style="cursor: pointer; border-top: 3px solid var(--accent-color);">
                 <div class="card-header">
-                    <span class="card-title">Live Voltage</span>
-                    <i class="fas fa-bolt" style="color: var(--accent-color);"></i>
+                    <span class="card-title">Panel 1 Voltage</span>
+                    <i class="fas fa-solar-panel" style="color: var(--accent-color);"></i>
                 </div>
                 <div class="card-value" id="voltage-val">0.00 <span class="card-unit">V</span></div>
                 <div class="status-indicator" id="v-trend">
@@ -86,6 +87,31 @@
                 </div>
             </div>
 
+            <!-- Panel 2 Voltage -->
+            <div class="card" onclick="location.href='ai_trends.html'" style="cursor: pointer; border-top: 3px solid var(--purple);">
+                <div class="card-header">
+                    <span class="card-title">Panel 2 Voltage</span>
+                    <i class="fas fa-solar-panel" style="color: var(--purple);"></i>
+                </div>
+                <div class="card-value" id="voltage2-val" style="color: var(--purple);">0.00 <span class="card-unit">V</span></div>
+                <div class="status-indicator" id="v2-trend">
+                    <span>Calculating trend...</span>
+                </div>
+            </div>
+
+            <!-- Battery Voltage -->
+            <div class="card" onclick="location.href='ai_trends.html'" style="cursor: pointer; border-top: 3px solid var(--cyan);">
+                <div class="card-header">
+                    <span class="card-title">Battery Voltage</span>
+                    <i class="fas fa-car-battery" style="color: var(--cyan);"></i>
+                </div>
+                <div class="card-value" id="battery-val" style="color: var(--cyan);">0.00 <span class="card-unit">V</span></div>
+                <div class="status-indicator" id="bat-trend">
+                    <span>Monitoring charge...</span>
+                </div>
+            </div>
+
+            <!-- Module Temp -->
             <div class="card" onclick="location.href='analysis.html?type=weather'" style="cursor: pointer;">
                 <div class="card-header">
                     <span class="card-title">Module Temp</span>
@@ -97,6 +123,7 @@
                 </div>
             </div>
 
+            <!-- Humidity -->
             <div class="card" onclick="location.href='analysis.html?type=weather'" style="cursor: pointer;">
                 <div class="card-header">
                     <span class="card-title">Atmospheric Humidity</span>
@@ -108,6 +135,7 @@
                 </div>
             </div>
 
+            <!-- AI Generative -->
             <div class="card" onclick="location.href='ai_trends.html'"
                 style="cursor: pointer; background: linear-gradient(135deg, rgba(188, 140, 255, 0.1), transparent);">
                 <div class="card-header">

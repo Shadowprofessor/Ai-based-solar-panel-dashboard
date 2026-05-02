@@ -52,6 +52,188 @@
             color: var(--purple);
             font-weight: 600;
         }
+
+        /* ThingSpeak Iframe Grid */
+        .thingspeak-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .ts-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .ts-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--glass-border);
+        }
+
+        .ts-card:nth-child(1) { border-top: 3px solid #58a6ff; }
+        .ts-card:nth-child(2) { border-top: 3px solid #bc8cff; }
+        .ts-card:nth-child(3) { border-top: 3px solid #39c5cf; }
+
+        .ts-card .ts-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .ts-card .ts-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        .ts-card .ts-badge {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .ts-card:nth-child(1) .ts-badge { background: rgba(88,166,255,0.15); color: #58a6ff; }
+        .ts-card:nth-child(2) .ts-badge { background: rgba(188,140,255,0.15); color: #bc8cff; }
+        .ts-card:nth-child(3) .ts-badge { background: rgba(57,197,207,0.15); color: #39c5cf; }
+
+        .ts-card iframe {
+            width: 100%;
+            height: 220px;
+            border: none;
+            border-radius: 12px;
+        }
+
+        /* Triple Voltage Analysis */
+        .voltage-analysis-card {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.04), rgba(57, 197, 207, 0.04));
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .voltage-analysis-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #58a6ff, #bc8cff, #39c5cf);
+        }
+
+        .voltage-analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .voltage-analysis-header h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .legend-pills {
+            display: flex;
+            gap: 12px;
+        }
+
+        .legend-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .legend-pill .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .legend-pill.blue { background: rgba(88,166,255,0.1); color: #58a6ff; }
+        .legend-pill.blue .dot { background: #58a6ff; box-shadow: 0 0 6px #58a6ff; }
+        .legend-pill.purple { background: rgba(188,140,255,0.1); color: #bc8cff; }
+        .legend-pill.purple .dot { background: #bc8cff; box-shadow: 0 0 6px #bc8cff; }
+        .legend-pill.cyan { background: rgba(57,197,207,0.1); color: #39c5cf; }
+        .legend-pill.cyan .dot { background: #39c5cf; box-shadow: 0 0 6px #39c5cf; }
+
+        .analysis-chart-wrap {
+            height: 400px;
+            position: relative;
+        }
+
+        /* Voltage Stats Strip */
+        .voltage-stats-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .v-stat {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+        }
+
+        .v-stat .v-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .v-stat:nth-child(1) .v-icon { background: rgba(88,166,255,0.15); color: #58a6ff; }
+        .v-stat:nth-child(2) .v-icon { background: rgba(188,140,255,0.15); color: #bc8cff; }
+        .v-stat:nth-child(3) .v-icon { background: rgba(57,197,207,0.15); color: #39c5cf; }
+
+        .v-stat .v-info .v-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .v-stat .v-info .v-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-top: 2px;
+        }
+
+        .v-stat:nth-child(1) .v-value { color: #58a6ff; }
+        .v-stat:nth-child(2) .v-value { color: #bc8cff; }
+        .v-stat:nth-child(3) .v-value { color: #39c5cf; }
+
+        @media (max-width: 1200px) {
+            .thingspeak-grid { grid-template-columns: 1fr; }
+            .generative-box { grid-template-columns: 1fr; }
+            .voltage-stats-strip { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 
@@ -90,6 +272,80 @@
             </div>
         </header>
 
+        <!-- ThingSpeak Live Voltage Graphs -->
+        <section class="thingspeak-grid">
+            <div class="ts-card">
+                <div class="ts-header">
+                    <span class="ts-label"><i class="fas fa-solar-panel"></i> Solar Panel 1</span>
+                    <span class="ts-badge">FIELD 3 — LIVE</span>
+                </div>
+                <iframe src="https://thingspeak.com/channels/2841130/charts/3?bgcolor=%230d1117&color=%2358a6ff&dynamic=true&results=60&type=line&width=auto&height=220&yaxis=Voltage%20(V)"></iframe>
+            </div>
+            <div class="ts-card">
+                <div class="ts-header">
+                    <span class="ts-label"><i class="fas fa-solar-panel"></i> Solar Panel 2</span>
+                    <span class="ts-badge">FIELD 4 — LIVE</span>
+                </div>
+                <iframe src="https://thingspeak.com/channels/2841130/charts/4?bgcolor=%230d1117&color=%23bc8cff&dynamic=true&results=60&type=line&width=auto&height=220&yaxis=Voltage%20(V)"></iframe>
+            </div>
+            <div class="ts-card">
+                <div class="ts-header">
+                    <span class="ts-label"><i class="fas fa-car-battery"></i> Battery Voltage</span>
+                    <span class="ts-badge">FIELD 5 — LIVE</span>
+                </div>
+                <iframe src="https://thingspeak.com/channels/2841130/charts/5?bgcolor=%230d1117&color=%2339c5cf&dynamic=true&results=60&type=line&width=auto&height=220&yaxis=Voltage%20(V)"></iframe>
+            </div>
+        </section>
+
+        <!-- Triple Voltage Analysis Chart -->
+        <section class="voltage-analysis-card">
+            <div class="voltage-analysis-header">
+                <div>
+                    <h3><i class="fas fa-wave-square" style="margin-right: 8px; color: var(--accent-color);"></i>Triple Voltage Analysis</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">
+                        Comparative voltage levels across all 3 sources over time
+                    </p>
+                </div>
+                <div class="legend-pills">
+                    <span class="legend-pill blue"><span class="dot"></span>Panel 1</span>
+                    <span class="legend-pill purple"><span class="dot"></span>Panel 2</span>
+                    <span class="legend-pill cyan"><span class="dot"></span>Battery</span>
+                </div>
+            </div>
+            <div class="analysis-chart-wrap">
+                <canvas id="tripleVoltageChart"></canvas>
+            </div>
+            <div id="triple-loading" style="text-align: center; padding: 3rem;">
+                <i class="fas fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--accent-color);"></i>
+                <p style="margin-top: 1rem; color: var(--text-secondary);">Fetching voltage data from ThingSpeak...</p>
+            </div>
+            <!-- Voltage Stats Strip -->
+            <div class="voltage-stats-strip" id="voltage-stats" style="display: none;">
+                <div class="v-stat">
+                    <div class="v-icon"><i class="fas fa-solar-panel"></i></div>
+                    <div class="v-info">
+                        <div class="v-label">Panel 1 — Avg / Peak</div>
+                        <div class="v-value" id="sp1-stats">—</div>
+                    </div>
+                </div>
+                <div class="v-stat">
+                    <div class="v-icon"><i class="fas fa-solar-panel"></i></div>
+                    <div class="v-info">
+                        <div class="v-label">Panel 2 — Avg / Peak</div>
+                        <div class="v-value" id="sp2-stats">—</div>
+                    </div>
+                </div>
+                <div class="v-stat">
+                    <div class="v-icon"><i class="fas fa-car-battery"></i></div>
+                    <div class="v-info">
+                        <div class="v-label">Battery — Avg / Peak</div>
+                        <div class="v-value" id="bat-stats">—</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Synthesized Future Window -->
         <section class="ai-card">
             <div class="gemini-header">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini"
@@ -130,20 +386,22 @@
         const CHANNEL_ID = '2841130';
         const GEMINI_API_KEY = 'AIzaSyBIVJIYMcJiSf5LkeBN9MZWntKrX5CbNYw';
 
+        let tripleChart = null;
+
         document.addEventListener('DOMContentLoaded', async () => {
+            // 1. Fetch triple voltage data and render analysis chart
+            fetchTripleVoltageData();
+
+            // 2. AI Forecast section
             let vData = [];
             try {
-                console.log("Fetching ThingSpeak context for AI...");
                 const response = await fetch(`https://api.thingspeak.com/channels/${CHANNEL_ID}/feeds.json?results=20`);
                 if (response.ok) {
                     const data = await response.json();
                     vData = data.feeds.map(f => parseFloat(f.field3) || 0);
                 }
 
-                if (vData.length === 0) {
-                    // If no data, mock some for the prompt so we don't crash
-                    vData = [12.5, 12.6, 12.4, 12.8, 12.5];
-                }
+                if (vData.length === 0) vData = [12.5, 12.6, 12.4, 12.8, 12.5];
 
                 const prompt = `
                     Analyze these voltage readings: [${vData.join(',')}].
@@ -152,7 +410,6 @@
                     {"labels": ["1h","2h","3h","4h","5h","6h","7h","8h","9h","10h","11h","12h"], "values": [12 numbers], "logic": "2-3 sentences explaining the projection", "peak": "peak value as string"}
                 `;
 
-                console.log("Requesting Generative Trends from Gemini...");
                 const aiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -166,14 +423,10 @@
                     const text = aiData.candidates[0].content.parts[0].text;
                     const jsonMatch = text.match(/\{[\s\S]*\}/);
                     if (!jsonMatch) throw new Error("Invalid AI JSON response format");
-
                     const result = JSON.parse(jsonMatch[0]);
-
                     document.getElementById('ai-logic').innerText = result.logic;
                     document.getElementById('ai-peak').innerText = result.peak;
-
-                    renderChart(result.labels, result.values);
-
+                    renderForecastChart(result.labels, result.values);
                     document.getElementById('ai-loading').style.display = 'none';
                     document.getElementById('ai-content').style.display = 'block';
                 } else {
@@ -181,41 +434,164 @@
                 }
             } catch (e) {
                 console.warn("Switching to Neural Simulation Engine due to:", e);
-                // Fallback: Generate "Dream" trend locally
-                // Calculate starts using the last 20 points
                 let startV = 12.5;
                 if (vData.length > 0) startV = vData[vData.length - 1];
-
                 runSimulatedTrend(startV);
             }
         });
 
+        // --- Triple Voltage Analysis ---
+        async function fetchTripleVoltageData() {
+            try {
+                const response = await fetch(`https://api.thingspeak.com/channels/${CHANNEL_ID}/feeds.json?results=100`);
+                if (!response.ok) throw new Error('ThingSpeak fetch failed');
+                const data = await response.json();
+                const feeds = data.feeds;
+
+                const labels = feeds.map(f => {
+                    const d = new Date(f.created_at);
+                    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                });
+                const sp1 = feeds.map(f => parseFloat(f.field3) || 0);
+                const sp2 = feeds.map(f => parseFloat(f.field4) || 0);
+                const bat = feeds.map(f => parseFloat(f.field5) || 0);
+
+                renderTripleVoltageChart(labels, sp1, sp2, bat);
+                updateVoltageStats(sp1, sp2, bat);
+
+                document.getElementById('triple-loading').style.display = 'none';
+                document.getElementById('voltage-stats').style.display = 'grid';
+            } catch (e) {
+                console.error('Triple Voltage fetch error:', e);
+                document.getElementById('triple-loading').innerHTML = `<p style="color: var(--danger-color);"><i class="fas fa-exclamation-triangle"></i> Failed to load voltage data</p>`;
+            }
+        }
+
+        function renderTripleVoltageChart(labels, sp1, sp2, bat) {
+            const ctx = document.getElementById('tripleVoltageChart');
+            if (!ctx) return;
+
+            tripleChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Solar Panel 1 (V)',
+                            data: sp1,
+                            borderColor: '#58a6ff',
+                            backgroundColor: 'rgba(88, 166, 255, 0.08)',
+                            borderWidth: 2.5,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 1.5,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: '#58a6ff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#58a6ff',
+                            pointHoverBorderWidth: 3
+                        },
+                        {
+                            label: 'Solar Panel 2 (V)',
+                            data: sp2,
+                            borderColor: '#bc8cff',
+                            backgroundColor: 'rgba(188, 140, 255, 0.08)',
+                            borderWidth: 2.5,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 1.5,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: '#bc8cff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#bc8cff',
+                            pointHoverBorderWidth: 3
+                        },
+                        {
+                            label: 'Battery (V)',
+                            data: bat,
+                            borderColor: '#39c5cf',
+                            backgroundColor: 'rgba(57, 197, 207, 0.08)',
+                            borderWidth: 2.5,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 1.5,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: '#39c5cf',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#39c5cf',
+                            pointHoverBorderWidth: 3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(13,17,23,0.95)',
+                            titleColor: '#f0f6fc',
+                            bodyColor: '#8b949e',
+                            borderColor: '#30363d',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 10,
+                            callbacks: {
+                                label: function(ctx) {
+                                    return ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)} V`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.04)' },
+                            ticks: { color: '#8b949e', font: { size: 11 } },
+                            title: { display: true, text: 'Voltage (V)', color: '#8b949e', font: { size: 12 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#8b949e', font: { size: 10 }, maxTicksLimit: 15 },
+                            title: { display: true, text: 'Time (Hours)', color: '#8b949e', font: { size: 12 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateVoltageStats(sp1, sp2, bat) {
+            const avg = arr => arr.length ? (arr.reduce((a, b) => a + b, 0) / arr.length) : 0;
+            const peak = arr => arr.length ? Math.max(...arr) : 0;
+
+            document.getElementById('sp1-stats').innerText = `${avg(sp1).toFixed(2)} / ${peak(sp1).toFixed(2)} V`;
+            document.getElementById('sp2-stats').innerText = `${avg(sp2).toFixed(2)} / ${peak(sp2).toFixed(2)} V`;
+            document.getElementById('bat-stats').innerText = `${avg(bat).toFixed(2)} / ${peak(bat).toFixed(2)} V`;
+        }
+
+        // --- AI Forecast ---
         function runSimulatedTrend(startV) {
             const labels = ["1h", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "11h", "12h"];
             const values = [];
-
-            // Create a pseudo-random curve that looks "predicted"
-            // Simulate day cycle: rise then fall, or random variation
             for (let i = 0; i < 12; i++) {
-                const hourFactor = Math.sin((i / 11) * Math.PI) * 2; // Curve up/down
+                const hourFactor = Math.sin((i / 11) * Math.PI) * 2;
                 const noise = (Math.random() - 0.5) * 1.5;
                 let val = startV + hourFactor + noise;
                 if (val < 0) val = 0;
                 values.push(parseFloat(val.toFixed(2)));
             }
-
             const peak = Math.max(...values).toFixed(2) + " V";
-
             document.getElementById('ai-logic').innerText = "Neural Simulation Active: Detected atmospheric variability via secondary heuristics. Extrapolated based on median historic efficiency models due to primary uplink latency.";
             document.getElementById('ai-peak').innerText = peak;
-
-            renderChart(labels, values);
-
+            renderForecastChart(labels, values);
             document.getElementById('ai-loading').style.display = 'none';
             document.getElementById('ai-content').style.display = 'block';
         }
 
-        function renderChart(labels, values) {
+        function renderForecastChart(labels, values) {
             new Chart(document.getElementById('genChart'), {
                 type: 'line',
                 data: {
@@ -246,4 +622,3 @@
 </body>
 
 </html>
-```
